@@ -82,8 +82,8 @@ func main() {
         log.Fatal("File not found.")
     }
 
-    key := funny.KeyGenerator(*instanceID + 69)
-    nonce := funny.NonceGenerator(*instanceID + 6969)
+    key := funny.KeyGenerator(*instanceID)
+    nonce := funny.NonceGenerator(*instanceID)
 
     log.Println("Encrypting file...")
     ciphertext := funny.Encrypt(plaintext, []byte(key), []byte(nonce))
