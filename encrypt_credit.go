@@ -1,20 +1,15 @@
 package main
 
 import (
-    "crypto/aes"
-    "crypto/cipher"
-    "crypto/md5"
-    "encoding/hex"
-
-    "bytes"
     "errors"
     "flag"
     "fmt"
     "io/ioutil"
     "log"
     "os"
-    "strconv"
     "strings"
+
+    "github.com/Funny-Systems-OSS/funny"
 )
 
 var (
@@ -27,16 +22,6 @@ var (
 const (
     versionString = "1.0.0"
 
-    funny = `
-    ________ ___  ___  ________   ________       ___    ___
-    |\  _____\\  \|\  \|\   ___  \|\   ___  \    |\  \  /  /|
-    \ \  \__/\ \  \\\  \ \  \\ \  \ \  \\ \  \   \ \  \/  / /
-     \ \   __\\ \  \\\  \ \  \\ \  \ \  \\ \  \   \ \    / /
-      \ \  \_| \ \  \\\  \ \  \\ \  \ \  \\ \  \   \/  /  /
-       \ \__\   \ \_______\ \__\\ \__\ \__\\ \__\__/  / /
-        \|__|    \|_______|\|__| \|__|\|__| \|__|\___/ /
-                                                \|___|/
-`
     usage = `
 Usage:
   encrypt_funny -f [credential file] -i [instance ID]
@@ -46,7 +31,7 @@ Options:
 )
 
 func init(){
-    fmt.Println(funny)
+    fmt.Println(funny.Funny)
     flag.Usage = func() {
         fmt.Fprintf(os.Stderr, usage)
         flag.VisitAll(func(f *flag.Flag) {
@@ -71,61 +56,12 @@ func checkFlags() error {
     return nil
 }
 
-func md5sum(text string) string {
-    hash := md5.Sum([]byte(text))
-    return hex.EncodeToString(hash[:])
-}
-
-func keyGenerator(val int) string {
-    return md5sum(strconv.Itoa(val))[:32]
-}
-
-func nonceGenerator(val int) string {
-    return keyGenerator(val)[:12]
-}
-
 func readDataFromFile(filepath string) ([]byte, error) {
     return ioutil.ReadFile(filepath)
 }
 
 func writeDataToFile(filepath string, data []byte) error {
     return ioutil.WriteFile(filepath, data, 666)
-}
-
-func encrypt(plaintext, key, nonce []byte) []byte {
-    block, err := aes.NewCipher(key)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    aesgcm, err := cipher.NewGCM(block)
-    if err != nil {
-        log.Fatal(err)
-    }
-
-    return aesgcm.Seal(nil, nonce, plaintext, nil)
-}
-
-func decrypt(ciphertext, key, nonce []byte) (plaintext []byte) {
-    block, err := aes.NewCipher(key)
-    if err != nil {
-        log.Panic(err)
-    }
-
-    aesgcm, err := cipher.NewGCM(block)
-    if err != nil {
-        log.Panic(err)
-    }
-
-    plaintext, err = aesgcm.Open(nil, nonce, ciphertext, nil)
-    if err != nil {
-        log.Panic(err)
-    }
-    return
-}
-
-func validate(data1 []byte, data2 []byte) bool {
-    return bytes.Equal(data1, data2)
 }
 
 func main() {
@@ -146,11 +82,11 @@ func main() {
         log.Fatal("File not found.")
     }
 
-    key := keyGenerator(*instanceID + 69)
-    nonce := nonceGenerator(*instanceID + 6969)
+    key := funny.KeyGenerator(*instanceID + 69)
+    nonce := funny.NonceGenerator(*instanceID + 6969)
 
     log.Println("Encrypting file...")
-    ciphertext := encrypt(plaintext, []byte(key), []byte(nonce))
+    ciphertext := funny.Encrypt(plaintext, []byte(key), []byte(nonce))
     if err = writeDataToFile(*outputFilePath, []byte(ciphertext)); err != nil {
         log.Fatal(err)
     }
@@ -164,7 +100,7 @@ func main() {
     }
     log.Println("OK.")
 
-    if !validate(decrypt(byteCiphertext, []byte(key), []byte(nonce)), plaintext){
+    if !funny.Validate(funny.Decrypt(byteCiphertext, []byte(key), []byte(nonce)), plaintext){
         log.Println("Some shit happened. The enrypted file might not work.")
     } else {
         log.Println("Task complete.")

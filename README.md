@@ -1,4 +1,7 @@
 # Encryptor for CloudSQL Proxy Hardening
+
+[中文版](https://github.com/Funny-Systems-OSS/Encryptor-for-CloudSQL-Proxy-Hardening/blob/master/README.zh.md)
+
 CloudSQL Proxy Hardening:
   https://github.com/Funny-Systems-OSS/cloudsql-proxy-hardening/tree/1.0.0
 + [Features](#Features)
@@ -18,8 +21,8 @@ CloudSQL Proxy Hardening:
   + -f:\
     The json file be used to retrieve Service Account credential in cloud_sql_proxy.
   + -i:\
-    The instance ID which the cloud_sql_proxy will be set.
+    The instance ID which the cloud_sql_proxy_funny will be set.
   + -o:\
-    If provided, it is treated as the store path of encrypted file. Default to be the same place as the input with filename '<FILENAME>.encrypted'.
+    If provided, it is treated as the store path of encrypted file. Default to be the same place as the input with filename '*FILENAME*.encrypted'.
   + -v:\
     Print the version of the app and exit.
