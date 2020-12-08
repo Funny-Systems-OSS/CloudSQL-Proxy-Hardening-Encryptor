@@ -1,4 +1,4 @@
-# Encryptor for CloudSQL Proxy Hardening
+# CloudSQL Proxy Hardening Encryptor
 CloudSQL Proxy Hardening:
   https://github.com/Funny-Systems-OSS/cloudsql-proxy-hardening/tree/1.0.0
 + [功能](#功能)
@@ -10,7 +10,7 @@ CloudSQL Proxy Hardening:
 ## 需求
 + Go 1.15 以上
 ## 安裝
-1. git clone https://github.com/Funny-Systems-OSS/Encryptor-for-CloudSQL-Proxy-Hardening.git
+1. git clone https://github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening-Encryptor.git
 2. cd ./cloudsql-proxy-hardening
 3. go build -o ./encrypt_funny ./encrypt_funny.go
 ## 使用
