@@ -9,7 +9,7 @@ import (
     "os"
     "strings"
 
-    "github.com/Funny-Systems-OSS/funny"
+    "github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening-Common"
 )
 
 var (
