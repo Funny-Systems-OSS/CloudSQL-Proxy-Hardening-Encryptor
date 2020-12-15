@@ -8,6 +8,7 @@ CloudSQL Proxy Hardening:
 + [Requirements](#Requirements)
 + [Installation](#Installation)
 + [Usage](#Usage)
++ [Todo](#Todo)
 ## Features
 + Replace plaintext credential file with encrypted one which bound to instance ID.
 ## Requirements
@@ -26,3 +27,5 @@ CloudSQL Proxy Hardening:
     If provided, it is treated as the store path of encrypted file. Default to be the same place as the input with filename '*FILENAME*.encrypted'.
   + -v:\
     Print the version of the app and exit.
+## Todo
++ Encrypt credential file using OpenSSL.
