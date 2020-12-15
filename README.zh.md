@@ -5,6 +5,7 @@ CloudSQL Proxy Hardening:
 + [需求](#需求)
 + [安裝](#安裝)
 + [使用](#使用)
++ [兔肚](#兔肚)
 ## 功能
 + 將 Cloud SQL Proxy 使用的明文金鑰加密，使其只能在指定的 GCE 執行個體上配合 [CloudSQL Proxy Hardening](https://github.com/Funny-Systems-OSS/cloudsql-proxy-hardening/tree/1.0.0) 使用。
 ## 需求
@@ -24,3 +25,5 @@ CloudSQL Proxy Hardening:
     預設值為 "*原始檔名*.encrypted" 於原始檔案位置。
   + -v:\
     印出版本號並離開程式。
+## 兔肚
++ 用 OpenSSL 方法執行加密
