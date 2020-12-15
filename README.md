@@ -1,9 +1,6 @@
 # CloudSQL Proxy Hardening Encryptor
-
-[中文版](https://github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening-Encryptor/blob/master/README.zh.md)
-
-CloudSQL Proxy Hardening:
-  https://github.com/Funny-Systems-OSS/cloudsql-proxy-hardening/tree/1.0.0
+[中文版](https://github.com/Funny-Systems-OSS/CloudSQL-Proxy-Hardening-Encryptor/blob/master/README.zh.md)\
+CloudSQL Proxy Hardening: https://github.com/Funny-Systems-OSS/cloudsql-proxy-hardening
 + [Features](#Features)
 + [Requirements](#Requirements)
 + [Installation](#Installation)
